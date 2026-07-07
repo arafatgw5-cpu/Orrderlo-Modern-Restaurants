@@ -109,7 +109,7 @@ export function Navbar() {
                       />
                     </button>
 
-                    {/* ★ CLEAN MEGA MENU */}
+                    {/* ★ প্রিমিয়াম মেগা মেনু (লিংক & ফুটার সরানো হয়েছে) */}
                     <AnimatePresence>
                       {megaOpen && (
                         <motion.div
@@ -117,27 +117,15 @@ export function Navbar() {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 8, scale: 0.97 }}
                           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                          className="absolute left-1/2 top-full mt-3 w-[min(92vw,720px)] -translate-x-1/2"
+                          className="absolute left-1/2 top-full mt-3 w-[min(92vw,540px)] -translate-x-1/2"
                           onMouseEnter={openMega}
                           onMouseLeave={scheduleCloseMega}
                         >
                           <div className="overflow-hidden rounded-2xl border border-border/60 bg-background/95 backdrop-blur-xl shadow-2xl">
-                            <div className="p-5">
-                              {/* Header */}
-                              <div className="mb-4 flex items-center justify-between border-b border-border/40 pb-3">
-                                <div>
-                                  <h3 className="text-sm font-semibold text-foreground">
-                                    Products
-                                  </h3>
-                                  <p className="mt-0.5 text-xs text-muted-foreground">
-                                    All-in-one restaurant platform
-                                  </p>
-                                </div>
-                              </div>
-
-                              {/* Products Grid - Simple Data Display */}
-                              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
-                                {products.map((product, i) => {
+                            {/* শুধু প্রিমিয়াম ডেটা গ্রিড */}
+                            <div className="p-6">
+                              <div className="grid grid-cols-2 gap-3">
+                                {products.slice(0, 4).map((product, i) => {
                                   const Icon = product.icon;
                                   return (
                                     <motion.div
@@ -149,37 +137,22 @@ export function Navbar() {
                                         duration: 0.3,
                                         ease: [0.16, 1, 0.3, 1],
                                       }}
-                                      className="flex items-start gap-3 rounded-lg p-3 transition-colors hover:bg-accent/50"
+                                      className="group flex items-start gap-4 rounded-xl border border-transparent p-4 transition-all duration-300 hover:scale-[1.02] hover:bg-accent/50 hover:border-ember/20 hover:shadow-lg"
                                     >
-                                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-ember/10 text-ember">
-                                        <Icon className="h-4 w-4" strokeWidth={1.8} />
+                                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-ember/10 text-ember transition-all duration-300 group-hover:scale-110 group-hover:bg-ember/20">
+                                        <Icon className="h-5 w-5" strokeWidth={1.8} />
                                       </div>
-                                      <div className="min-w-0 flex-1">
-                                        <p className="text-sm font-medium text-foreground truncate">
+                                      <div className="min-w-0 flex-1 space-y-0.5">
+                                        <p className="text-sm font-medium text-foreground">
                                           {product.name}
                                         </p>
-                                        <p className="text-xs text-muted-foreground truncate">
+                                        <p className="text-xs text-muted-foreground line-clamp-1">
                                           {product.tagline}
                                         </p>
                                       </div>
                                     </motion.div>
                                   );
                                 })}
-                              </div>
-
-                              {/* Footer CTA */}
-                              <div className="mt-4 flex items-center justify-between border-t border-border/40 pt-3">
-                                <p className="text-xs text-muted-foreground">
-                                  Everything on one ledger.
-                                </p>
-                                <Link
-                                  href="/products"
-                                  onClick={() => setMegaOpen(false)}
-                                  className="group flex items-center gap-1 text-xs font-medium text-ember transition-colors hover:text-ember/80"
-                                >
-                                  View all
-                                  <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-                                </Link>
                               </div>
                             </div>
                           </div>
